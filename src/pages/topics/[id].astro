@@ -29,7 +29,7 @@ const pledges = byTopic(topic.id);
 					<li>
 						<strong><a href={`${href(`parties/${party.id}/`)}#${p.anchor}`}>{p.title}</a></strong>
 						{p.costing && <span class="meta"> — {p.costing}</span>}
-						<p class="meta"><a href={p.sourceUrl} rel="noopener noreferrer">{p.sourceTitle} ↗</a></p>
+						<p class="meta"><a href={p.sourceUrl} target="_blank" rel="noopener noreferrer">{p.sourceTitle} ↗</a></p>
 					</li>
 				))}
 			</ul>

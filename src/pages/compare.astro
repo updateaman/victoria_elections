@@ -4,17 +4,17 @@ import { loadData } from '../lib/data';
 import { href } from '../lib/site';
 
 const { parties, topics, byTopic } = await loadData();
-const allParties = parties.map((p) => p.id);
+const defaultParties = new Set(['labor', 'liberal', 'nationals', 'greens', 'one-nation']);
 ---
 
 <BaseLayout title="Compare party pledges – Victorian Election 2026" description="Compare the 2026 Victorian election pledges of Labor, Liberal, Nationals, Greens and minor parties side by side by topic.">
 	<h1>Compare pledges side by side</h1>
-	<p class="lead">Choose up to four parties, then scan the table by topic. Each entry links to the original source.</p>
+	<p class="lead">Choose the parties you want to compare, then scan the table by topic. Each entry links to the original source.</p>
 
 	<div class="controls">
 		<strong>Show:</strong>
 		{parties.map((p) => (
-			<label><input type="checkbox" class="party-toggle" value={p.id} checked={allParties.indexOf(p.id) < 4} /> <span style={`border-bottom:3px solid ${p.data.colour}`}>{p.data.shortName}</span></label>
+			<label><input type="checkbox" class="party-toggle" value={p.id} checked={defaultParties.has(p.id)} /> <span style={`border-bottom:3px solid ${p.data.colour}`}>{p.data.shortName}</span></label>
 		))}
 		<button id="select-all" type="button" class="badge plain">All</button>
 		<button id="select-none" type="button" class="badge plain">None</button>

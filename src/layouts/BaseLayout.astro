@@ -53,7 +53,7 @@ const nav = [
 				<p>Independent, non-partisan reference. Summaries of party pledges; always check the linked source before voting. This site does not endorse any party.</p>
 				<p>
 					Data last verified {new Date(`${site.dataLastVerified}T00:00:00Z`).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}.
-					<a href={site.errorReportUrl}>Report an error</a> · <a href={href('about/')}>How this works</a> · <a href={site.sourceRepoUrl}>Source on GitHub</a>
+					<a href={site.errorReportUrl} target="_blank" rel="noopener noreferrer">Report an error</a> · <a href={href('about/')}>How this works</a> · <a href={site.sourceRepoUrl} target="_blank" rel="noopener noreferrer">Source on GitHub</a>
 				</p>
 				<p>{site.authorisation}</p>
 			</div>
