@@ -1,0 +1,12 @@
+[
+  { "id": "health", "name": "Health", "description": "Hospitals, ambulances, mental health, aged care and public health.", "order": 1 },
+  { "id": "housing", "name": "Housing", "description": "Housing supply, affordability, renters, social and public housing, planning.", "order": 2 },
+  { "id": "cost-of-living", "name": "Cost of Living", "description": "Household bills, concessions, rebates and direct cost relief.", "order": 3 },
+  { "id": "transport", "name": "Transport", "description": "Public transport, roads, rail projects and active transport.", "order": 4 },
+  { "id": "education", "name": "Education", "description": "Kindergarten, schools, TAFE, skills and training.", "order": 5 },
+  { "id": "environment-energy", "name": "Environment & Energy", "description": "Climate, emissions, energy supply and prices, water, parks and conservation.", "order": 6 },
+  { "id": "crime-justice", "name": "Crime & Justice", "description": "Policing, bail, sentencing, courts, prisons and community safety.", "order": 7 },
+  { "id": "economy-tax", "name": "Economy & Tax", "description": "State budget, debt, taxes, jobs, business and industry.", "order": 8 },
+  { "id": "integrity", "name": "Integrity", "description": "Anti-corruption, transparency, donations and parliamentary standards.", "order": 9 },
+  { "id": "other", "name": "Other", "description": "Pledges that do not fit the topics above.", "order": 10 }
+]
