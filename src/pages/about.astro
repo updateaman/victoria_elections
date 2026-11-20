@@ -54,13 +54,13 @@ const sources = [
 
 	<h2>Sources and cross-checks</h2>
 	<ul>
-		{sources.map((s) => <li><a href={s.url} rel="noopener noreferrer">{s.name} ↗</a></li>)}
+		{sources.map((s) => <li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.name} ↗</a></li>)}
 	</ul>
 	<p>The direct link to each party's manifesto or policy page is on the <a href={href('')}>home page</a> and each party page.</p>
 
 	<h2>Corrections</h2>
 	<p>
-		If a summary is wrong, a source link is broken or a pledge is missing, please <a href={site.errorReportUrl}>open an issue on GitHub</a>.
+		If a summary is wrong, a source link is broken or a pledge is missing, please <a href={site.errorReportUrl} target="_blank" rel="noopener noreferrer">open an issue on GitHub</a>.
 		We will correct errors and note material changes.
 	</p>
 
@@ -68,7 +68,7 @@ const sources = [
 	<p>
 		{site.authorisation} This site is non-partisan and educational, and does not endorse any party.
 		The Victorian Electoral Commission advises that authorisation statements normally include a full name
-		and street address; see its <a href="https://vec.vic.gov.au/candidates-and-parties/become-a-state-election-candidate/authorisation" rel="noopener noreferrer">authorisation guidance ↗</a>.
+		and street address; see its <a href="https://vec.vic.gov.au/candidates-and-parties/become-a-state-election-candidate/authorisation" target="_blank" rel="noopener noreferrer">authorisation guidance ↗</a>.
 	</p>
 
 	<h2>Data freshness</h2>

@@ -39,9 +39,9 @@ const totalPledges = pledges.length;
 						{party.data.limitedInformation && <p class="meta">Limited published policy — see <a href={href('about/')}>method</a>.</p>}
 						<div class="party-links">
 							<a href={href(`parties/${party.id}/`)}>See pledges →</a>
-							<a href={party.data.manifestoUrl} rel="noopener noreferrer">Manifesto / policies ↗</a>
-							{party.data.manifestoPdf && <a href={party.data.manifestoPdf} rel="noopener noreferrer">PDF ↗</a>}
-							{party.data.archiveUrl && <a href={party.data.archiveUrl} rel="noopener noreferrer">Archived snapshot ↗</a>}
+							<a href={party.data.manifestoUrl} target="_blank" rel="noopener noreferrer">Manifesto / policies ↗</a>
+							{party.data.manifestoPdf && <a href={party.data.manifestoPdf} target="_blank" rel="noopener noreferrer">PDF ↗</a>}
+							{party.data.archiveUrl && <a href={party.data.archiveUrl} target="_blank" rel="noopener noreferrer">Archived snapshot ↗</a>}
 						</div>
 					</li>
 				);

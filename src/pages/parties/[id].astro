@@ -23,10 +23,10 @@ const pledges = byParty(party.id);
 
 	<div class="card">
 		<p><strong>Official policy documents:</strong>
-			<a href={party.data.manifestoUrl} rel="noopener noreferrer">Manifesto / policy page ↗</a>
-			{party.data.manifestoPdf && <> · <a href={party.data.manifestoPdf} rel="noopener noreferrer">Policy PDF ↗</a></>}
-			{party.data.website && <> · <a href={party.data.website} rel="noopener noreferrer">Website ↗</a></>}
-			{party.data.archiveUrl && <> · <a href={party.data.archiveUrl} rel="noopener noreferrer">Archived snapshot ↗</a></>}
+			<a href={party.data.manifestoUrl} target="_blank" rel="noopener noreferrer">Manifesto / policy page ↗</a>
+			{party.data.manifestoPdf && <> · <a href={party.data.manifestoPdf} target="_blank" rel="noopener noreferrer">Policy PDF ↗</a></>}
+			{party.data.website && <> · <a href={party.data.website} target="_blank" rel="noopener noreferrer">Website ↗</a></>}
+			{party.data.archiveUrl && <> · <a href={party.data.archiveUrl} target="_blank" rel="noopener noreferrer">Archived snapshot ↗</a></>}
 		</p>
 		<p class="meta">Party details last checked {formatDate(party.data.lastVerified)}. {pledges.length} pledges recorded.</p>
 		{party.data.limitedInformation && <p class="notice"><strong>Limited information:</strong> this party has not published a full platform. Pledges come from its website, candidates' pages and its VEC how-to-vote card.</p>}

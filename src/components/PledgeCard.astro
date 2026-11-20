@@ -22,9 +22,9 @@ const { pledge, showParty = true } = Astro.props;
 	</div>
 	<p>{pledge.summary}</p>
 	{pledge.excerpt && <blockquote>“{pledge.excerpt}”</blockquote>}
-	<p class="fact"><strong>Costing:</strong> {pledge.costing ? pledge.costing : 'Not stated in the source'}{pledge.costingSource && <> · <a href={pledge.costingSource} rel="noopener noreferrer">costing source</a></>}</p>
+	<p class="fact"><strong>Costing:</strong> {pledge.costing ? pledge.costing : 'Not stated in the source'}{pledge.costingSource && <> · <a href={pledge.costingSource} target="_blank" rel="noopener noreferrer">costing source</a></>}</p>
 	<p class="fact">
-		<strong>Source:</strong> <a href={pledge.sourceUrl} rel="noopener noreferrer">{pledge.sourceTitle}</a>
+		<strong>Source:</strong> <a href={pledge.sourceUrl} target="_blank" rel="noopener noreferrer">{pledge.sourceTitle}</a>
 		{pledge.announcedDate && <> · Announced {formatDate(pledge.announcedDate)}</>}
 		{' · '}Checked {formatDate(pledge.dateAccessed)}
 	</p>

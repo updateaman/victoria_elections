@@ -64,6 +64,7 @@ const indexUrl = href('search-index.json');
 			src.className = 'meta';
 			const srcA = document.createElement('a');
 			srcA.href = p.sourceUrl;
+			srcA.target = '_blank';
 			srcA.textContent = p.sourceTitle + ' ↗';
 			srcA.rel = 'noopener noreferrer';
 			src.append(srcA);
