@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PartyBadge from '../../components/PartyBadge.astro';
+import { loadData, type Topic } from '../../lib/data';
+import { href } from '../../lib/site';
+
+export async function getStaticPaths() {
+	const { topics } = await loadData();
+	return topics.map((topic) => ({ params: { id: topic.id }, props: { topic } }));
+}
+
+interface Props { topic: Topic }
+const { topic } = Astro.props;
+const { parties, byTopic } = await loadData();
+const pledges = byTopic(topic.id);
+---
+
+<BaseLayout title={`${topic.data.name} – party pledges compared`} description={`What each party pledges on ${topic.data.name.toLowerCase()} in the 2026 Victorian state election.`}>
+	<p><a href={href('')}>← All topics</a></p>
+	<h1>{topic.data.name}</h1>
+	<p class="lead">{topic.data.description}</p>
+	<p class="meta">{pledges.length} pledges across {new Set(pledges.map((p) => p.partyData.id)).size} parties.</p>
+
+	{parties.filter((party) => pledges.some((p) => p.partyData.id === party.id)).map((party) => (
+		<section>
+			<h2><PartyBadge party={party} /></h2>
+			<ul class="card">
+				{pledges.filter((p) => p.partyData.id === party.id).map((p) => (
+					<li>
+						<strong><a href={`${href(`parties/${party.id}/`)}#${p.anchor}`}>{p.title}</a></strong>
+						{p.costing && <span class="meta"> — {p.costing}</span>}
+						<p class="meta"><a href={p.sourceUrl} rel="noopener noreferrer">{p.sourceTitle} ↗</a></p>
+					</li>
+				))}
+			</ul>
+		</section>
+	))}
+
+	<p><a href={href('compare/')}>See the full comparison table →</a></p>
+</BaseLayout>

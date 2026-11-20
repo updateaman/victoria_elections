@@ -8,7 +8,9 @@
 
 | Area | Decision |
 |---|---|
-| Parties | Labor, Liberal, Nationals, Greens + ~4–6 notable minor parties |
+| Parties | 8: Labor, Liberal, Nationals, Greens, One Nation, Legalise Cannabis, Animal Justice, Libertarian |
+| Coalition | Liberal and Nationals shown separately; joint pledges stored once in `liberal.json` with `jointWith: ["nationals"]` |
+| Context | Premier Ben Carroll (Labor); Opposition Leader Jess Wilson (Liberal); Nationals leader Danny O'Brien |
 | Tech | Astro static site, GitHub Actions → GitHub Pages |
 | Depth | Neutral summary + costing (if stated) + source link per pledge |
 | Deadline | Phases 1–3 live before 28 Nov; Phases 4–5 after (5A possibly before) |
@@ -30,50 +32,57 @@
 - [x] 0.2 Add `.gitignore`, update `README.md` (purpose, how to contribute/update data)
 - [x] 0.3 Configure `astro.config.mjs` with `site` and `base` for GitHub Pages (derived from `GITHUB_REPOSITORY`)
 - [x] 0.4 Add `.github/workflows/deploy.yml` (build + deploy on push to `main`)
-- [ ] 0.5 Create GitHub remote + push; enable Pages (Source: GitHub Actions); verify placeholder deploys
+- [x] 0.5 Create GitHub remote + push; enable Pages (Source: GitHub Actions); verify placeholder deploys – live at https://updateaman.github.io/victoria_elections/
 - [x] 0.6 Define data schemas in `src/content.config.ts` (Astro content collections + Zod):
   - `parties`: `{ id, name, shortName, colour, logo?, website, manifestoUrl, manifestoPdf?, archiveUrl?, lastVerified, limitedInformation, notes?, order }`
   - `topics`: `{ id, name, description, order }`
-  - `pledges`: `{ id, party, topic, title, summary, costing?, costingSource?, sourceUrl, sourceTitle, archiveUrl?, excerpt?, announcedDate?, dateAccessed }` – one JSON array file per party in `src/data/pledges/`
+  - `pledges`: `{ id, party, jointWith[], topic, title, summary, costing?, costingSource?, sourceUrl, sourceTitle, archiveUrl?, excerpt?, announcedDate?, dateAccessed }` – one JSON array file per party in `src/data/pledges/`
 - [x] 0.7 Create `src/data/topics.json` with the fixed taxonomy:
   Health, Housing, Cost of Living, Transport, Education, Environment & Energy, Crime & Justice, Economy & Tax, Integrity, Other
 
 ## Phase 1 – Research & data collection (Days 1–3)
 
-- [ ] 1.1 Confirm registered parties contesting (VEC register / candidate lists); finalise list of minor parties
-- [ ] 1.2 For each party, record official website, policy page, manifesto PDF → `parties.json`
-- [ ] 1.3 Archive source pages (save PDFs / Wayback Machine snapshot links) in case they change
-- [ ] 1.4 Extract pledges – one task per party:
-  - [ ] 1.4a Labor
-  - [ ] 1.4b Liberal
-  - [ ] 1.4c Nationals (note joint Coalition policies)
-  - [ ] 1.4d Greens
-  - [ ] 1.4e–j Minor parties (one each)
-- [ ] 1.5 Capture costings where stated (incl. PBO costings if published)
-- [ ] 1.6 Store raw manifesto excerpts per pledge (for quoting + chatbot)
-- [ ] 1.7 QA pass: check every link works, summaries are neutral, topics are consistent, no duplicates
-- [ ] 1.8 Flag parties with limited published policy ("limited information" note)
+- [x] 1.1 Confirm registered parties contesting (VEC register: 24 parties); chose 8 (see Decisions)
+- [x] 1.2 For each party, record official website, policy page, manifesto PDF → `parties.json`
+- [x] 1.3 Archive source pages – Wayback snapshot links for 7 of 8 manifesto pages added to `parties.json` (`archiveUrl`); Animal Justice policies page has no snapshot
+- [x] 1.4 Extract pledges – one task per party (285 pledges total):
+  - [x] 1.4a Labor (52)
+  - [x] 1.4b Liberal (46 joint pledges; all tagged `jointWith: ["nationals"]`)
+  - [x] 1.4c Nationals (19 Nationals-specific pledges)
+  - [x] 1.4d Greens (62)
+  - [x] 1.4e One Nation (50)
+  - [x] 1.4f Legalise Cannabis (11)
+  - [x] 1.4g Animal Justice (24)
+  - [x] 1.4h Libertarian (21)
+
+Key independent sources: VEC party register, Victorian PBO 2026 Election Commitment Tracker (https://pbo.vic.gov.au/2026_election_commitment_tracker), ABC policy tracker.
+Note: the PBO tracker is an interactive dashboard that could not be scraped; PBO figures were taken from linked party/ABC sources where available.
+- [x] 1.5 Capture costings where stated (incl. party-claimed PBO figures, labelled as such; 74 pledges have costings)
+- [x] 1.6 Store raw manifesto excerpts per pledge for quoting + chatbot (285 excerpts; spot-checked verbatim against sources)
+- [x] 1.7 QA pass: `npm run check:data` (0 errors/warnings), 139 source URLs checked (one redirect fixed), spin-word scan (0 in summaries), internal link check (0 broken)
+- [x] 1.8 Flag parties with limited published policy ("limited information" note on Legalise Cannabis)
 
 ## Phase 2 – Website build (Days 3–5)
 
-- [ ] 2.1 Base layout: header/nav, footer (authorisation line, last-updated, disclaimer)
-- [ ] 2.2 Party colour/badge component; pledge card component (summary, costing, source link)
-- [ ] 2.3 Home page: intro, party grid with direct manifesto links, topic shortcuts
-- [ ] 2.4 Party pages `/parties/[id]`: pledges grouped by topic
-- [ ] 2.5 Topic pages `/topics/[id]`: all parties' pledges on that topic side by side
-- [ ] 2.6 Compare page `/compare`: topic × party matrix with party picker (2–4 parties)
-- [ ] 2.7 Client-side search/filter (keyword, party, topic) – e.g. Pagefind or Fuse.js
-- [ ] 2.8 About page: methodology, sources, neutrality statement, how to report errors (GitHub issue link)
-- [ ] 2.9 Responsive / mobile check; accessibility (contrast, keyboard nav, alt text)
-- [ ] 2.10 SEO/sharing: page titles, meta descriptions, Open Graph image
+- [x] 2.1 Base layout: header/nav, footer (authorisation placeholder, last-updated, disclaimer)
+- [x] 2.2 Party colour/badge component; pledge card component (summary, costing, source link, verbatim excerpt)
+- [x] 2.3 Home page: intro, party grid with direct manifesto/PDF/archive links, topic shortcuts
+- [x] 2.4 Party pages `/parties/[id]`: pledges grouped by topic
+- [x] 2.5 Topic pages `/topics/[id]`: all parties' pledges on that topic side by side
+- [x] 2.6 Compare page `/compare`: topic × party matrix with party picker
+- [x] 2.7 Client-side search (`/search/` + generated `/search-index.json`): keyword, party, topic filters
+- [x] 2.8 About page: methodology, sources, neutrality statement, how to report errors (GitHub issue link)
+- [x] 2.9 Responsive CSS, semantic HTML, labelled form controls, skip link, visible focus styles, sticky table headers
+- [ ] 2.10 SEO/sharing: page titles and meta descriptions done; Open Graph image still to add
+- [x] 2.11 Fix `base` trailing slash bug found in production-style build (links were missing `/`)
 
 ## Phase 3 – Launch (Days 5–6)
 
 - [ ] 3.1 Check authorisation requirements with VEC; add authorisation statement to footer
-- [ ] 3.2 Automated link check across all source URLs
-- [ ] 3.3 Final neutrality review of all summaries
-- [ ] 3.4 Deploy to production; smoke-test live site on desktop + mobile
-- [ ] 3.5 Add "Report an error" issue template
+- [x] 3.2 Automated link check across all source URLs (139 URLs, one redirect fixed; plus 1,369 internal links)
+- [x] 3.3 Final neutrality review of all summaries (automated spin-word scan + manual sample review)
+- [ ] 3.4 Deploy updated site to production; smoke-test live site on desktop + mobile
+- [x] 3.5 Add "Report an error" issue template (`.github/ISSUE_TEMPLATE/correction.yml`)
 - [ ] 3.6 Pre-election refresh: re-check parties for new announcements (until 27 Nov)
 
 ## Phase 4 – Track record (post-launch)

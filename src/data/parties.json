@@ -1,1 +1,97 @@
-[]
+[
+  {
+    "id": "labor",
+    "name": "Australian Labor Party – Victorian Branch",
+    "shortName": "Labor",
+    "colour": "#E13940",
+    "website": "https://www.viclabor.org.au/",
+    "manifestoUrl": "https://www.viclabor.org.au/our-plan",
+    "lastVerified": "2026-11-20",
+    "notes": "Governing party, led by Premier Ben Carroll.",
+    "order": 1,
+    "archiveUrl": "https://web.archive.org/web/20261118120701/https://www.viclabor.org.au/our-plan"
+  },
+  {
+    "id": "liberal",
+    "name": "Liberal Party of Australia – Victorian Division",
+    "shortName": "Liberal",
+    "colour": "#1C4F9C",
+    "website": "https://vicliberal.org.au/",
+    "manifestoUrl": "https://ourplan.au/",
+    "manifestoPdf": "https://vicliberal.org.au/Uploads/37417316674975808NRT_vicliberal/2026-ourplan-online-booklet.pdf",
+    "lastVerified": "2026-11-20",
+    "notes": "Led by Jess Wilson. Campaigning on a joint platform with The Nationals (\"Our Plan to Deliver for Victorians\").",
+    "order": 2,
+    "archiveUrl": "https://web.archive.org/web/20261113014425/https://ourplan.au/"
+  },
+  {
+    "id": "nationals",
+    "name": "National Party of Australia – Victoria",
+    "shortName": "Nationals",
+    "colour": "#006644",
+    "website": "https://vic.nationals.org.au/",
+    "manifestoUrl": "https://vic.nationals.org.au/policies/",
+    "manifestoPdf": "https://vic.nationals.org.au/wp-content/uploads/2026/09/NatVic_Plan-for-Reg-Vic_Booklet_SD_LIB_NAT.pdf",
+    "lastVerified": "2026-11-20",
+    "notes": "Led by Danny O'Brien. Campaigning on a joint platform with the Liberal Party, plus regional-specific policies.",
+    "order": 3,
+    "archiveUrl": "https://web.archive.org/web/20261115140318/https://vic.nationals.org.au/policies/"
+  },
+  {
+    "id": "greens",
+    "name": "Australian Greens Victoria",
+    "shortName": "Greens",
+    "colour": "#10A64A",
+    "website": "https://greens.org.au/vic",
+    "manifestoUrl": "https://greens.org.au/vic/platform",
+    "lastVerified": "2026-11-20",
+    "order": 4,
+    "archiveUrl": "https://web.archive.org/web/20261118122233/https://greens.org.au/vic/platform"
+  },
+  {
+    "id": "one-nation",
+    "name": "One Nation Victoria",
+    "shortName": "One Nation",
+    "colour": "#F36C21",
+    "website": "https://vic.onenation.org.au/",
+    "manifestoUrl": "https://vic.onenation.org.au/policies",
+    "manifestoPdf": "https://vic.onenation.org.au/wp-content/uploads/2026/10/The_Real_Deal_One_Nation_Vic_Policy_Booklet_Oct2026.pdf",
+    "lastVerified": "2026-11-20",
+    "order": 5,
+    "archiveUrl": "https://web.archive.org/web/20261116084306/https://vic.onenation.org.au/policies"
+  },
+  {
+    "id": "legalise-cannabis",
+    "name": "Legalise Cannabis Victoria",
+    "shortName": "Legalise Cannabis",
+    "colour": "#6B8E23",
+    "website": "https://www.lcvicparty.org.au/",
+    "manifestoUrl": "https://www.lcvicparty.org.au/",
+    "lastVerified": "2026-11-20",
+    "limitedInformation": true,
+    "notes": "No formal platform published; pledges are drawn from party news posts, MPs' candidate pages and its VEC how-to-vote card.",
+    "order": 6,
+    "archiveUrl": "https://web.archive.org/web/20261119132228/https://www.lcvicparty.org.au/"
+  },
+  {
+    "id": "animal-justice",
+    "name": "Animal Justice Party",
+    "shortName": "Animal Justice",
+    "colour": "#00838F",
+    "website": "https://vic.animaljusticeparty.org/",
+    "manifestoUrl": "https://vic.animaljusticeparty.org/policies",
+    "lastVerified": "2026-11-20",
+    "order": 7
+  },
+  {
+    "id": "libertarian",
+    "name": "Libertarian Party (formerly Liberal Democrats)",
+    "shortName": "Libertarian",
+    "colour": "#D4A017",
+    "website": "https://www.vic.libertarians.org.au/",
+    "manifestoUrl": "https://www.vic.libertarians.org.au/policies",
+    "lastVerified": "2026-11-20",
+    "order": 8,
+    "archiveUrl": "https://web.archive.org/web/20261116073202/https://www.vic.libertarians.org.au/policies"
+  }
+]

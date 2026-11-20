@@ -1,0 +1,38 @@
+name: Report a correction
+description: Report an error in a pledge summary, source link, costing or party detail.
+title: "[Correction]: "
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep this site accurate. Please include the specific pledge or page and the correct information. This site is non-partisan; reports about perceived bias are welcome too.
+  - type: input
+    id: page
+    attributes:
+      label: Page or pledge ID
+      description: URL of the page, or the pledge ID (e.g. `greens-housing-001`)
+      placeholder: https://updateaman.github.io/victoria_elections/parties/labor/
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is wrong?
+      options:
+        - Summary is inaccurate or misleading
+        - Source link is broken or does not support the pledge
+        - Costing is wrong or missing
+        - Party detail is wrong or missing
+        - Pledge is missing
+        - Perceived bias / wording issue
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: What should it say?
+      description: Include a direct source URL where possible.
+    validations:
+      required: true

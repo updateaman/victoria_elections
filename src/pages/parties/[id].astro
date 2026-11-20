@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PartyBadge from '../../components/PartyBadge.astro';
+import PledgeCard from '../../components/PledgeCard.astro';
+import { loadData, type Party } from '../../lib/data';
+import { formatDate, href } from '../../lib/site';
+
+export async function getStaticPaths() {
+	const { parties } = await loadData();
+	return parties.map((party) => ({ params: { id: party.id }, props: { party } }));
+}
+
+interface Props { party: Party }
+const { party } = Astro.props;
+const { topics, byParty } = await loadData();
+const pledges = byParty(party.id);
+---
+
+<BaseLayout title={`${party.data.shortName} pledges – Victorian Election 2026`} description={`All recorded ${party.data.shortName} pledges for the 2026 Victorian state election, with sources and costings.`}>
+	<p><a href={href('')}>← All parties</a></p>
+	<h1><PartyBadge party={party} link={false} /> pledges</h1>
+	<p class="lead">{party.data.name}. {party.data.notes ?? ''}</p>
+
+	<div class="card">
+		<p><strong>Official policy documents:</strong>
+			<a href={party.data.manifestoUrl} rel="noopener noreferrer">Manifesto / policy page ↗</a>
+			{party.data.manifestoPdf && <> · <a href={party.data.manifestoPdf} rel="noopener noreferrer">Policy PDF ↗</a></>}
+			{party.data.website && <> · <a href={party.data.website} rel="noopener noreferrer">Website ↗</a></>}
+			{party.data.archiveUrl && <> · <a href={party.data.archiveUrl} rel="noopener noreferrer">Archived snapshot ↗</a></>}
+		</p>
+		<p class="meta">Party details last checked {formatDate(party.data.lastVerified)}. {pledges.length} pledges recorded.</p>
+		{party.data.limitedInformation && <p class="notice"><strong>Limited information:</strong> this party has not published a full platform. Pledges come from its website, candidates' pages and its VEC how-to-vote card.</p>}
+	</div>
+
+	<nav aria-label="Topics on this page">
+		<ul class="topic-list">
+			{topics.filter((t) => pledges.some((p) => p.topicData.id === t.id)).map((t) => (
+				<li><a href={`#topic-${t.id}`}>{t.data.name} ({pledges.filter((p) => p.topicData.id === t.id).length})</a></li>
+			))}
+		</ul>
+	</nav>
+
+	{
+		topics.filter((t) => pledges.some((p) => p.topicData.id === t.id)).map((topic) => (
+			<section :id={`topic-${topic.id}`}>
+				<h2>{topic.data.name}</h2>
+				<p class="meta">{topic.data.description}</p>
+				<div class="grid">
+					{pledges.filter((p) => p.topicData.id === topic.id).map((p) => (
+						<PledgeCard pledge={p} showParty={false} />
+					))}
+				</div>
+			</section>
+		))
+	}
+</BaseLayout>
