@@ -73,9 +73,10 @@ main { padding: 2rem 0 3rem; min-height: 60vh; }
 .topic-list a:hover { border-color: var(--accent); }
 
 .table-scroll { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }
-table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+table { border-collapse: separate; border-spacing: 0; width: 100%; font-size: .92rem; }
 th, td { border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); padding: .6rem .7rem; text-align: left; vertical-align: top; }
-th { background: #edf2f6; position: sticky; top: 0; z-index: 1; }
+th { background: #edf2f6; }
+#comparison thead { position: relative; z-index: 1; }
 tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 th:last-child, td:last-child { border-right: 0; }
 td.topic-cell { background: #f2f6f9; font-weight: 650; min-width: 130px; }
