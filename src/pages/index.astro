@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { href, site } from '../lib/site';
+import { formatDate, href, site } from '../lib/site';
 import { loadData } from '../lib/data';
 
 const { parties, topics, pledges } = await loadData();
@@ -17,9 +17,8 @@ const totalPledges = pledges.length;
 		endorse, score or rank them.
 	</p>
 	<div class="notice">
-		<strong>Election day is Saturday {new Date(`${site.electionDate}T00:00:00Z`).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}.</strong>
-		Sources were checked on {new Date(`${site.dataLastVerified}T00:00:00Z`).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}
-		and parties continue to announce new policies. Always check the linked source.
+		<strong>Election day is Saturday {formatDate(site.electionDate)}.</strong>{' '}
+		Sources were checked on {formatDate(site.dataLastVerified)} and parties continue to announce new policies. Always check the linked source.
 	</div>
 
 	<div class="stats">
