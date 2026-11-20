@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+import { base, href, site } from '../lib/site';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = site.title, description = site.description } = Astro.props;
+const path = Astro.url.pathname.replace(base.replace(/\/$/, ''), '') || '/';
+const nav = [
+	{ href: href(''), label: 'Home', match: path === '/' },
+	{ href: href('compare/'), label: 'Compare', match: path.startsWith('/compare') },
+	{ href: href('search/'), label: 'Search', match: path.startsWith('/search') },
+	{ href: href('about/'), label: 'About', match: path.startsWith('/about') },
+];
+---
+
+<!doctype html>
+<html lang="en-AU">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href={href('favicon.svg')} />
+		<link rel="icon" href={href('favicon.ico')} />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+	</head>
+	<body>
+		<a class="skip-link" href="#main">Skip to content</a>
+		<header class="site-header">
+			<div class="wrap">
+				<a class="brand" href={href('')}>VIC <span>Election 2026</span></a>
+				<nav aria-label="Main navigation">
+					<ul>
+						{nav.map((item) => (
+							<li><a href={item.href} aria-current={item.match ? 'page' : undefined}>{item.label}</a></li>
+						))}
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<main id="main" class="wrap">
+			<slot />
+		</main>
+		<footer class="site-footer">
+			<div class="wrap">
+				<p>Independent, non-partisan reference. Summaries of party pledges; always check the linked source before voting. This site does not endorse any party.</p>
+				<p>
+					Data last verified {new Date(`${site.dataLastVerified}T00:00:00Z`).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}.
+					<a href={site.errorReportUrl}>Report an error</a> · <a href={href('about/')}>How this works</a> · <a href={site.sourceRepoUrl}>Source on GitHub</a>
+				</p>
+				<p>{site.authorisation}</p>
+			</div>
+		</footer>
+	</body>
+</html>

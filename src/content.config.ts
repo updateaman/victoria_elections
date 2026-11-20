@@ -91,6 +91,8 @@ const pledges = defineCollection({
 	schema: z.object({
 		id: z.string(),
 		party: reference('parties'),
+		// Other parties that share this pledge (e.g. joint Liberal/Nationals commitments).
+		jointWith: z.array(reference('parties')).default([]),
 		topic: reference('topics'),
 		title: z.string(),
 		summary: z.string(),

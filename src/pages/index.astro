@@ -1,27 +1,68 @@
 ---
-import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { href, site } from '../lib/site';
+import { loadData } from '../lib/data';
 
-const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
-const topics = (await getCollection('topics')).sort((a, b) => a.data.order - b.data.order);
-const parties = await getCollection('parties');
-const pledges = await getCollection('pledges');
+const { parties, topics, pledges } = await loadData();
+const totalPledges = pledges.length;
 ---
 
-<html lang="en-AU">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
-		<link rel="icon" href={`${base}favicon.ico`} />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Victorian Election 2026 – Party Pledges Compared</title>
-	</head>
-	<body>
-		<h1>Victorian State Election 2026 – Party Pledges Compared</h1>
-		<p>A neutral, source-linked comparison of party pledges. Coming soon.</p>
-		<p>{parties.length} parties · {pledges.length} pledges · {topics.length} topics</p>
-		<ul>
-			{topics.map((t) => <li>{t.data.name}</li>)}
-		</ul>
-	</body>
-</html>
+<BaseLayout>
+	<h1>Victorian state election 2026: party pledges compared</h1>
+	<p class="lead">
+		What are the parties promising for Victoria? Browse each party's pledges, compare them side by side by topic,
+		and follow the links to the original policy documents. This site summarises what parties say — it does not
+		endorse, score or rank them.
+	</p>
+	<div class="notice">
+		<strong>Election day is Saturday {new Date(`${site.electionDate}T00:00:00Z`).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}.</strong>
+		Sources were checked on {new Date(`${site.dataLastVerified}T00:00:00Z`).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}
+		and parties continue to announce new policies. Always check the linked source.
+	</div>
+
+	<div class="stats">
+		<div><div class="stat">{parties.length}</div> parties</div>
+		<div><div class="stat">{totalPledges}</div> pledges</div>
+		<div><div class="stat">{topics.length}</div> topics</div>
+	</div>
+
+	<h2 id="parties">Parties and their policy documents</h2>
+	<ul class="grid grid-3" style="list-style:none;padding:0;">
+		{
+			parties.map((party) => {
+				const count = pledges.filter((p) => p.partyData.id === party.id || p.jointParties.some((j) => j.id === party.id)).length;
+				return (
+					<li class="card party-card" style={`--party-colour:${party.data.colour}`}>
+						<h3>{party.data.shortName}</h3>
+						<p class="meta">{party.data.name}</p>
+						<p>{count} {count === 1 ? 'pledge' : 'pledges'} recorded</p>
+						{party.data.limitedInformation && <p class="meta">Limited published policy — see <a href={href('about/')}>method</a>.</p>}
+						<div class="party-links">
+							<a href={href(`parties/${party.id}/`)}>See pledges →</a>
+							<a href={party.data.manifestoUrl} rel="noopener noreferrer">Manifesto / policies ↗</a>
+							{party.data.manifestoPdf && <a href={party.data.manifestoPdf} rel="noopener noreferrer">PDF ↗</a>}
+							{party.data.archiveUrl && <a href={party.data.archiveUrl} rel="noopener noreferrer">Archived snapshot ↗</a>}
+						</div>
+					</li>
+				);
+			})
+		}
+	</ul>
+
+	<h2>Compare by topic</h2>
+	<p>Each topic page puts every party's pledges on that issue next to each other.</p>
+	<ul class="topic-list">
+		{topics.map((topic) => (
+			<li><a href={href(`topics/${topic.id}/`)}>{topic.data.name}</a></li>
+		))}
+	</ul>
+	<p><a href={href('compare/')}><strong>Open the full comparison table →</strong></a></p>
+
+	<h2>How to read this site</h2>
+	<p>
+		Every pledge has a short neutral summary, the cost where the party or an independent body has stated one,
+		and a link to the source. Quotations are verbatim. Where the Liberal Party and The Nationals announced a
+		pledge jointly, it appears once and is marked as shared by both parties. See <a href={href('about/')}>About</a>
+		for the method and limitations.
+	</p>
+</BaseLayout>

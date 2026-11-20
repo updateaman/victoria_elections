@@ -1,0 +1,31 @@
+---
+import type { Pledge } from '../lib/data';
+import { formatDate, href } from '../lib/site';
+import PartyBadge from './PartyBadge.astro';
+
+interface Props {
+	pledge: Pledge;
+	showParty?: boolean;
+}
+
+const { pledge, showParty = true } = Astro.props;
+---
+
+<article class="card pledge" id={pledge.anchor}>
+	<div class="pledge-head">
+		<h3>{pledge.title}</h3>
+		<div class="badges">
+			{showParty && <PartyBadge party={pledge.partyData} />}
+			{pledge.jointParties.map((p) => <PartyBadge party={p} joint />)}
+			<a class="badge plain" href={href(`topics/${pledge.topicData.id}/`)}>{pledge.topicData.data.name}</a>
+		</div>
+	</div>
+	<p>{pledge.summary}</p>
+	{pledge.excerpt && <blockquote>“{pledge.excerpt}”</blockquote>}
+	<p class="fact"><strong>Costing:</strong> {pledge.costing ? pledge.costing : 'Not stated in the source'}{pledge.costingSource && <> · <a href={pledge.costingSource} rel="noopener noreferrer">costing source</a></>}</p>
+	<p class="fact">
+		<strong>Source:</strong> <a href={pledge.sourceUrl} rel="noopener noreferrer">{pledge.sourceTitle}</a>
+		{pledge.announcedDate && <> · Announced {formatDate(pledge.announcedDate)}</>}
+		{' · '}Checked {formatDate(pledge.dateAccessed)}
+	</p>
+</article>

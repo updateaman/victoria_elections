@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadData } from '../lib/data';
+import { formatDate, href, site } from '../lib/site';
+
+const { parties, topics, pledges } = await loadData();
+const sources = [
+	{ name: 'Victorian Electoral Commission – registered political parties', url: 'https://vec.vic.gov.au/candidates-and-parties/registered-political-parties/currently-registered-parties' },
+	{ name: 'Victorian Parliamentary Budget Office – 2026 Election Commitment Tracker', url: 'https://pbo.vic.gov.au/2026_election_commitment_tracker' },
+	{ name: 'Victorian Parliamentary Budget Office – policy costings and advice', url: 'https://pbo.vic.gov.au/policy_costings_and_advice' },
+	{ name: 'ABC News – 2026 election policy promise tracker', url: 'https://www.abc.net.au/news/2026-11-04/victoria-2026-election-policy-promise-tracker/107247200' },
+];
+---
+
+<BaseLayout title="About – how this site works" description="Method, sources and limitations of the Victorian Election 2026 pledge comparison site.">
+	<h1>About this site</h1>
+	<p class="lead">
+		This site collects and summarises what political parties say they will do if elected at the 2026 Victorian
+		state election. It is a reference tool, not a campaign: there are no scores, rankings or recommendations.
+	</p>
+
+	<h2>What is included</h2>
+	<p>
+		Eight parties are covered: the four parties with seats in the current parliament from the major blocs
+		(Labor, Liberal, Nationals and Greens), plus One Nation, Legalise Cannabis, Animal Justice and the
+		Libertarian Party. The Liberal Party and The Nationals contest on a joint platform; joint pledges are
+		recorded once and marked as shared. The Nationals also publish separate regional policies, which are
+		listed on their own page.
+	</p>
+	<p>
+		There are currently <strong>{pledges.length}</strong> pledges across <strong>{topics.length}</strong> topics.
+		Each entry has a short neutral summary, a verbatim excerpt where available, a costing when the party or an
+		independent body has published one, and a direct link to the source.
+	</p>
+
+	<h2>Method</h2>
+	<ol>
+		<li>We read each party's official election platform or policy pages, and policy documents such as PDF booklets where published.</li>
+		<li>We record forward-looking commitments — what the party says it will do. Statements about past achievements are generally excluded, but some platforms mix the two.</li>
+		<li>Summaries use the party's own description, stripped of rhetoric. Where a figure is a party estimate, the summary says so.</li>
+		<li>Each entry is assigned one topic. A pledge that covers several areas appears once, under the closest topic.</li>
+		<li>Costings are included only when the source states one. “Not stated in the source” means we found no published figure; it does not mean the policy has no cost.</li>
+		<li>Every source link is checked, and the date it was checked is shown on each entry. Party pages can change during a campaign.</li>
+	</ol>
+
+	<h2>Limitations</h2>
+	<ul>
+		<li><strong>Parties announce policies throughout the campaign.</strong> The data was last checked on {formatDate(site.dataLastVerified)}. Treat this as a snapshot.</li>
+		<li><strong>Coverage is not equal.</strong> Legalise Cannabis has no formal platform, so its pledges come from news posts, MPs' candidate pages and its how-to-vote card. Smaller parties often describe positions rather than costed programs.</li>
+		<li><strong>Not all pledges are included.</strong> We focus on significant, specific commitments and skip local announcements for individual schools or streets.</li>
+		<li><strong>Costings are not audited here.</strong> Where available, independent Parliamentary Budget Office figures are linked. A party's own cost estimate is labelled as its own.</li>
+		<li><strong>No endorsement.</strong> Inclusion is not approval. Summaries describe what parties say; they do not assess whether a pledge is achievable, desirable or truthful. Check the source and independent analysis before voting.</li>
+	</ul>
+
+	<h2>Sources and cross-checks</h2>
+	<ul>
+		{sources.map((s) => <li><a href={s.url} rel="noopener noreferrer">{s.name} ↗</a></li>)}
+	</ul>
+	<p>The direct link to each party's manifesto or policy page is on the <a href={href('')}>home page</a> and each party page.</p>
+
+	<h2>Corrections</h2>
+	<p>
+		If a summary is wrong, a source link is broken or a pledge is missing, please <a href={site.errorReportUrl}>open an issue on GitHub</a>.
+		We will correct errors and note material changes.
+	</p>
+
+	<h2>Electoral authorisation</h2>
+	<p class="notice">
+		<strong>TODO before publication:</strong> Victorian electoral law may require an authorisation statement on
+		published electoral matter. Replace the placeholder in <code>src/lib/site.ts</code> and confirm the
+		requirement with the Victorian Electoral Commission. Current placeholder: {site.authorisation}
+	</p>
+
+	<h2>Data freshness</h2>
+	<p>Party records were last verified {formatDate(site.dataLastVerified)} · Election day {formatDate(site.electionDate)}.</p>
+</BaseLayout>

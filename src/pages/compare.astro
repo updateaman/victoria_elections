@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadData } from '../lib/data';
+import { href } from '../lib/site';
+
+const { parties, topics, byTopic } = await loadData();
+const allParties = parties.map((p) => p.id);
+---
+
+<BaseLayout title="Compare party pledges – Victorian Election 2026" description="Compare the 2026 Victorian election pledges of Labor, Liberal, Nationals, Greens and minor parties side by side by topic.">
+	<h1>Compare pledges side by side</h1>
+	<p class="lead">Choose up to four parties, then scan the table by topic. Each entry links to the original source.</p>
+
+	<div class="controls">
+		<strong>Show:</strong>
+		{parties.map((p) => (
+			<label><input type="checkbox" class="party-toggle" value={p.id} checked={allParties.indexOf(p.id) < 4} /> <span style={`border-bottom:3px solid ${p.data.colour}`}>{p.data.shortName}</span></label>
+		))}
+		<button id="select-all" type="button" class="badge plain">All</button>
+		<button id="select-none" type="button" class="badge plain">None</button>
+	</div>
+
+	<div class="table-scroll">
+		<table id="comparison">
+			<caption class="meta">Pledges by topic and party. “Shared” means the pledge was announced jointly by the Liberal Party and The Nationals.</caption>
+			<thead>
+				<tr>
+					<th scope="col">Topic</th>
+					{parties.map((p) => <th scope="col" data-party={p.id} style={`border-top:4px solid ${p.data.colour}`}>{p.data.shortName}</th>)}
+				</tr>
+			</thead>
+			<tbody>
+				{topics.map((topic) => (
+					<tr>
+						<th scope="row" class="topic-cell"><a href={href(`topics/${topic.id}/`)}>{topic.data.name}</a></th>
+						{parties.map((party) => {
+							const pledges = byTopic(topic.id).filter((p) => p.partyData.id === party.id || p.jointParties.some((j) => j.id === party.id));
+							return (
+								<td data-party={party.id}>
+									{pledges.length ? (
+										<ul class="cell-list">
+											{pledges.map((p) => (
+												<li>
+													<a href={`${href(`parties/${p.partyData.id}/`)}#${p.anchor}`}>{p.title}</a>
+													{p.jointParties.length > 0 && <span class="meta"> (shared)</span>}
+													{p.costing && <br />}
+													{p.costing && <span class="meta">{p.costing}</span>}
+												</li>
+											))}
+										</ul>
+									) : <span class="meta">—</span>}
+								</td>
+							);
+						})}
+					</tr>
+				))}
+			</tbody>
+		</table>
+	</div>
+	<p class="meta" style="margin-top:.8rem">Counts and wording are taken from the parties' own materials; see each pledge's source link for context. Use <a href={href('search/')}>Search</a> to filter pledges by keyword.</p>
+</BaseLayout>
+
+<script>
+	const toggles = [...document.querySelectorAll<HTMLInputElement>('.party-toggle')];
+	function apply() {
+		const selected = new Set(toggles.filter((t) => t.checked).map((t) => t.value));
+		document.querySelectorAll<HTMLElement>('#comparison [data-party]').forEach((el) => {
+			el.hidden = !selected.has(el.dataset.party!);
+		});
+	}
+	toggles.forEach((t) => t.addEventListener('change', apply));
+	document.querySelector('#select-all')?.addEventListener('click', () => { toggles.forEach((t) => (t.checked = true)); apply(); });
+	document.querySelector('#select-none')?.addEventListener('click', () => { toggles.forEach((t) => (t.checked = false)); apply(); });
+	apply();
+</script>

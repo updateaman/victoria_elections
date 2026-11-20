@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { href } from '../lib/site';
+import { loadData } from '../lib/data';
+
+const { parties, topics } = await loadData();
+const indexUrl = href('search-index.json');
+---
+
+<BaseLayout title="Search pledges – Victorian Election 2026" description="Search election pledges by keyword, party or topic.">
+	<h1>Search pledges</h1>
+	<p class="lead">Search across all recorded pledges. Results link to the full entry and to the original source.</p>
+
+	<div class="controls">
+		<label>Keywords <input id="q" type="search" placeholder="e.g. hospital, rent, bail" autocomplete="off" /></label>
+		<label>Party <select id="party"><option value="">All parties</option>{parties.map((p) => <option value={p.id}>{p.data.shortName}</option>)}</select></label>
+		<label>Topic <select id="topic"><option value="">All topics</option>{topics.map((t) => <option value={t.id}>{t.data.name}</option>)}</select></label>
+	</div>
+	<p class="meta" id="status" aria-live="polite">Loading index…</p>
+	<ul class="search-results" id="results"></ul>
+</BaseLayout>
+
+<script define:vars={{ indexUrl }}>
+	const statusEl = document.querySelector('#status');
+	const resultsEl = document.querySelector('#results');
+	const q = document.querySelector('#q');
+	const partyFilter = document.querySelector('#party');
+	const topicFilter = document.querySelector('#topic');
+	let index = [];
+
+	fetch(indexUrl)
+		.then((r) => r.json())
+		.then((data) => {
+			index = data;
+			statusEl.textContent = `${index.length} pledges indexed.`;
+			run();
+		})
+		.catch(() => { statusEl.textContent = 'Could not load the search index.'; });
+
+	function run() {
+		const terms = q.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+		const hits = index.filter((p) => {
+			if (partyFilter.value && !p.partyIds.includes(partyFilter.value)) return false;
+			if (topicFilter.value && p.topicId !== topicFilter.value) return false;
+			const hay = `${p.title} ${p.summary} ${p.costing ?? ''} ${p.topic} ${p.party}`.toLowerCase();
+			return terms.every((t) => hay.includes(t));
+		});
+		statusEl.textContent = `${hits.length} ${hits.length === 1 ? 'result' : 'results'}${terms.length ? ' for “' + q.value + '”' : ''}.`;
+		resultsEl.innerHTML = '';
+		for (const p of hits) {
+			const li = document.createElement('li');
+			li.className = 'card';
+			const title = document.createElement('strong');
+			const a = document.createElement('a');
+			a.href = p.url;
+			a.textContent = p.title;
+			title.append(a);
+			const meta = document.createElement('div');
+			meta.className = 'meta';
+			meta.textContent = `${p.party}${p.sharedWith.length ? ' (shared with ' + p.sharedWith.join(', ') + ')' : ''} · ${p.topic}${p.costing ? ' · ' + p.costing : ''}`;
+			const pEl = document.createElement('p');
+			pEl.textContent = p.summary;
+			const src = document.createElement('p');
+			src.className = 'meta';
+			const srcA = document.createElement('a');
+			srcA.href = p.sourceUrl;
+			srcA.textContent = p.sourceTitle + ' ↗';
+			srcA.rel = 'noopener noreferrer';
+			src.append(srcA);
+			li.append(title, meta, pEl, src);
+			resultsEl.append(li);
+		}
+	}
+
+	[q, partyFilter, topicFilter].forEach((el) => el.addEventListener('input', run));
+</script>

@@ -1,0 +1,22 @@
+---
+import { href } from '../lib/site';
+import type { Party } from '../lib/data';
+
+interface Props {
+	party: Party;
+	link?: boolean;
+	joint?: boolean;
+}
+
+const { party, link = true, joint = false } = Astro.props;
+const style = `--party-colour:${party.data.colour}`;
+const classes = `badge${joint ? ' joint' : ''}`;
+---
+
+{
+	link ? (
+		<a class={classes} style={style} href={href(`parties/${party.id}/`)}>{party.data.shortName}</a>
+	) : (
+		<span class={classes} style={style}>{party.data.shortName}</span>
+	)
+}
