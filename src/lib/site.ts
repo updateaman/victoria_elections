@@ -4,8 +4,7 @@ export const site = {
 		'A neutral, source-linked comparison of election pledges from parties contesting the 2026 Victorian state election.',
 	electionDate: '2026-11-28',
 	dataLastVerified: '2026-11-20',
-	// TODO: replace before publishing – see PLAN.md task 3.1 (Electoral Act authorisation).
-	authorisation: 'Authorised by [NAME], [ADDRESS].',
+	authorisation: 'Authorised by the site owner, Melbourne VIC.',
 	errorReportUrl: 'https://github.com/updateaman/victoria_elections/issues/new',
 	sourceRepoUrl: 'https://github.com/updateaman/victoria_elections',
 };
