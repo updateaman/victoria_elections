@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const topics = (await getCollection('topics')).sort((a, b) => a.data.order - b.data.order);
+const parties = await getCollection('parties');
+const pledges = await getCollection('pledges');
+---
+
+<html lang="en-AU">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+		<link rel="icon" href={`${base}favicon.ico`} />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Victorian Election 2026 – Party Pledges Compared</title>
+	</head>
+	<body>
+		<h1>Victorian State Election 2026 – Party Pledges Compared</h1>
+		<p>A neutral, source-linked comparison of party pledges. Coming soon.</p>
+		<p>{parties.length} parties · {pledges.length} pledges · {topics.length} topics</p>
+		<ul>
+			{topics.map((t) => <li>{t.data.name}</li>)}
+		</ul>
+	</body>
+</html>

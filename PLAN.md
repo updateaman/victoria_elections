@@ -26,16 +26,16 @@
 
 ## Phase 0 – Setup (Day 1)
 
-- [ ] 0.1 Scaffold Astro project in repo root (TypeScript, minimal template)
-- [ ] 0.2 Add `.gitignore`, update `README.md` (purpose, how to contribute/update data)
-- [ ] 0.3 Configure `astro.config.mjs` with `site` and `base` for GitHub Pages
-- [ ] 0.4 Add `.github/workflows/deploy.yml` (build + deploy on push to `main`)
-- [ ] 0.5 Enable Pages (Source: GitHub Actions) in repo settings; deploy placeholder page
-- [ ] 0.6 Define data schemas (Astro content collections + Zod):
-  - `parties`: `{ id, name, shortName, colour, logo?, website, manifestoUrl, manifestoPdf?, lastVerified, notes? }`
-  - `topics`: `{ id, name, description }`
-  - `pledges`: `{ id, partyId, topicId, title, summary, costing?, costingSource?, sourceUrl, sourceTitle, excerpt?, dateAccessed, announcedDate? }`
-- [ ] 0.7 Create `src/data/topics.json` with the fixed taxonomy:
+- [x] 0.1 Scaffold Astro project in repo root (TypeScript, minimal template)
+- [x] 0.2 Add `.gitignore`, update `README.md` (purpose, how to contribute/update data)
+- [x] 0.3 Configure `astro.config.mjs` with `site` and `base` for GitHub Pages (derived from `GITHUB_REPOSITORY`)
+- [x] 0.4 Add `.github/workflows/deploy.yml` (build + deploy on push to `main`)
+- [ ] 0.5 Create GitHub remote + push; enable Pages (Source: GitHub Actions); verify placeholder deploys
+- [x] 0.6 Define data schemas in `src/content.config.ts` (Astro content collections + Zod):
+  - `parties`: `{ id, name, shortName, colour, logo?, website, manifestoUrl, manifestoPdf?, archiveUrl?, lastVerified, limitedInformation, notes?, order }`
+  - `topics`: `{ id, name, description, order }`
+  - `pledges`: `{ id, party, topic, title, summary, costing?, costingSource?, sourceUrl, sourceTitle, archiveUrl?, excerpt?, announcedDate?, dateAccessed }` – one JSON array file per party in `src/data/pledges/`
+- [x] 0.7 Create `src/data/topics.json` with the fixed taxonomy:
   Health, Housing, Cost of Living, Transport, Education, Environment & Energy, Crime & Justice, Economy & Tax, Integrity, Other
 
 ## Phase 1 – Research & data collection (Days 1–3)
