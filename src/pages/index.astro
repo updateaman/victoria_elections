@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
 import { href, site } from '../lib/site';
 import { loadData } from '../lib/data';
 
 const { parties, topics, pledges } = await loadData();
+const candidates = await getCollection('candidates');
 const totalPledges = pledges.length;
 ---
 
@@ -26,7 +28,8 @@ const totalPledges = pledges.length;
 		<div><div class="stat">{topics.length}</div> topics</div>
 	</div>
 
-	<h2 id="parties">Parties and their policy documents</h2>
+	<h2 id="parties">Parties, candidates and policy documents</h2>
+	<p>Meet the state leaders and featured candidates for each party. Select a name to read their biography, or <a href="https://www.vec.vic.gov.au/voting/2026-state-election/find-candidates" target="_blank" rel="noopener noreferrer">find all candidates in your electorate at the Victorian Electoral Commission ↗</a>.</p>
 	<ul class="grid grid-3" style="list-style:none;padding:0;">
 		{
 			parties.map((party) => {
@@ -35,6 +38,16 @@ const totalPledges = pledges.length;
 					<li class="card party-card" style={`--party-colour:${party.data.colour}`}>
 						<h3>{party.data.shortName}</h3>
 						<p class="meta">{party.data.name}</p>
+						<ul class="candidate-links">
+							{candidates.filter((c) => c.data.partyId.id === party.id).map(({ id, data }) => (
+								<li>
+									<a href={href(`candidates/${id}/`)}>
+										<img src={data.portraitUrl ?? href(`candidates/${id}.jpg`)} width="52" height="52" loading="lazy" referrerpolicy="no-referrer" alt="" />
+										<span><strong>{data.name}</strong><small>{data.role}</small></span>
+									</a>
+								</li>
+							))}
+						</ul>
 						<p>{count} {count === 1 ? 'pledge' : 'pledges'} recorded</p>
 						{party.data.limitedInformation && <p class="meta">Limited published policy — see <a href={href('about/')}>method</a>.</p>}
 						<div class="party-links">

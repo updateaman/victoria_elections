@@ -54,6 +54,12 @@ main { padding: 2rem 0 3rem; min-height: 60vh; }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem; }
 .card h3 { margin-top: 0; }
 .party-card { border-top: 5px solid var(--party-colour, var(--accent)); display: flex; flex-direction: column; gap: .5rem; }
+.candidate-links { list-style: none; padding: 0; margin: 0 0 1rem; }
+.candidate-links li + li { margin-top: .5rem; }
+.candidate-links a { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+.candidate-links strong { text-decoration: underline; }
+.candidate-links small { display: block; color: var(--muted); font-weight: 400; }
+.candidate-links img { flex: none; object-fit: cover; object-position: center 25%; border-radius: 50%; }
 .party-card .party-links { margin-top: auto; display: flex; flex-wrap: wrap; gap: .5rem 1rem; font-size: .92rem; }
 
 .badge { display: inline-block; border-radius: 999px; padding: .1rem .55rem; font-size: .78rem; font-weight: 650;

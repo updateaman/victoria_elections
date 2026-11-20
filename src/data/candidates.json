@@ -1,0 +1,97 @@
+[
+  {
+    "id": "ellen-sandell",
+    "name": "Ellen Sandell",
+    "partyId": "greens",
+    "role": "Victorian Greens leader and candidate for Melbourne",
+    "bio": "Sandell trained as a scientist and led the Australian Youth Climate Coalition before winning Melbourne in 2014. She became leader of the Victorian Greens in 2024.",
+    "sourceUrl": "https://greens.org.au/vic/person/ellen-sandell",
+    "photoCredit": "Australian Greens (greens.org.au), cropped portrait.",
+    "license": "CC BY-SA 2.5 Australia",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5/au/",
+    "photoSourceUrl": "https://commons.wikimedia.org/wiki/File:Ellen_Sandell_cropped.jpg"
+  },
+  {
+    "id": "warren-pickering",
+    "name": "Warren Pickering",
+    "partyId": "one-nation",
+    "role": "One Nation Victoria leader and candidate for Pakenham",
+    "bio": "Pickering grew up on a Gippsland farm, worked as a bricklayer and served as an Australian Army combat engineer. He previously stood for the Senate in Victoria.",
+    "sourceUrl": "https://vic.onenation.org.au/candidate/warren-pickering",
+    "photoCredit": "Melbourne Press Club, cropped video still, 13 November 2026.",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "photoSourceUrl": "https://commons.wikimedia.org/wiki/File:Warren_Pickering_MPC_2026_1_(cropped).jpg"
+  },
+  {
+    "id": "rachel-payne",
+    "name": "Rachel Payne",
+    "partyId": "legalise-cannabis",
+    "role": "Lead Legalise Cannabis candidate for South-Eastern Metropolitan",
+    "bio": "Payne worked at the Family Court of Australia and Centrelink before entering the Legislative Council in 2022. She represents South-Eastern Metropolitan, where she is seeking a second term.",
+    "sourceUrl": "https://www.lcvicparty.org.au/rachel_payne_candidate_for_south_eastern_metropolitan",
+    "photoCredit": "Official portrait from Rachel Payne MP’s website.",
+    "photoSourceUrl": "https://rachelpayne.com.au/about/",
+    "portraitUrl": "https://rachelpayne.com.au/wp-content/uploads/2026/10/rachel-payne-mp-portrait-683x1024.jpg.webp"
+  },
+  {
+    "id": "ben-carroll",
+    "name": "Ben Carroll",
+    "partyId": "labor",
+    "role": "Premier of Victoria and Labor candidate for Niddrie",
+    "bio": "Carroll worked as a lawyer and policy adviser before voters in Niddrie first elected him in 2012. He served as deputy premier and education minister before succeeding Jacinta Allan as premier and Victorian Labor leader in July 2026.",
+    "sourceUrl": "https://www.parliament.vic.gov.au/members/ben-carroll/",
+    "photoCredit": "Emily Kulich / Melbourne Press Club. Cropped by WikiWanderer261; resized for this site.",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "photoSourceUrl": "https://commons.wikimedia.org/wiki/File:Ben_Carroll_(cropped).jpg"
+  },
+  {
+    "id": "jess-wilson",
+    "name": "Jess Wilson",
+    "partyId": "liberal",
+    "role": "Leader of the Opposition and Liberal candidate for Kew",
+    "bio": "Wilson entered the Victorian Legislative Assembly in 2022 as the member for Kew. In November 2025 she succeeded Brad Battin as Victorian Liberal leader and Leader of the Opposition. She leads the Liberal–National Coalition into the 2026 election.",
+    "sourceUrl": "https://www.parliament.vic.gov.au/members/jess-wilson/",
+    "photoCredit": "We Did Creative, ‘Jess Wilson 0026’. Cropped by DogsBreakfast87; resized and converted to JPEG for this site.",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "photoSourceUrl": "https://commons.wikimedia.org/wiki/File:Jess_Wilson_0026_(cropped).png"
+  },
+  {
+    "id": "danny-obrien",
+    "name": "Danny O’Brien",
+    "partyId": "nationals",
+    "role": "Victorian Nationals leader and candidate for Gippsland South",
+    "bio": "O’Brien began his journalism career in Sale and later led the National Irrigators’ Council. He entered the Legislative Council for Eastern Victoria in 2014, won the Gippsland South by-election in 2015 and succeeded Peter Walsh as Victorian Nationals leader in November 2024.",
+    "sourceUrl": "https://www.parliament.vic.gov.au/members/danny-obrien/",
+    "photoCredit": "Alison Newman. Rural Press Club portrait cropped by LivelyRatification; resized for this site.",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "photoSourceUrl": "https://commons.wikimedia.org/wiki/File:Danny_O%27Brien_at_Rural_Press_Club_event_(cropped).jpg"
+  },
+  {
+    "id": "georgie-purcell",
+    "name": "Georgie Purcell",
+    "partyId": "animal-justice",
+    "role": "Legislative Council candidate for Northern Victoria",
+    "bio": "Purcell volunteered on campaigns to end puppy farming and worked as chief of staff to an Animal Justice Party MP. In 2022, voters in Northern Victoria elected her to the Legislative Council.",
+    "sourceUrl": "https://vic.animaljusticeparty.org/georgie-purcell",
+    "photoCredit": "Alison Newman. Cropped by TarnishedPath; resized for this site.",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "photoSourceUrl": "https://commons.wikimedia.org/wiki/File:Georgie_Purcell-2025.jpg"
+  },
+  {
+    "id": "david-limbrick",
+    "name": "David Limbrick",
+    "partyId": "libertarian",
+    "role": "Legislative Council candidate for South-Eastern Metropolitan",
+    "bio": "Limbrick first won a seat in the Victorian Legislative Council in 2018. He returned in 2022 to represent the South-Eastern Metropolitan Region.",
+    "sourceUrl": "https://www.parliament.vic.gov.au/members/david-limbrick/",
+    "photoCredit": "Alison Newman. Cropped by LivelyRatification; resized for this site.",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "photoSourceUrl": "https://commons.wikimedia.org/wiki/File:David_Limbrick_at_Manningham_Hotel_(1)_(cropped).jpg"
+  }
+]

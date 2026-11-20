@@ -107,4 +107,21 @@ const pledges = defineCollection({
 	}),
 });
 
-export const collections = { parties, topics, pledges };
+const candidates = defineCollection({
+	loader: file('src/data/candidates.json'),
+	schema: z.object({
+		id: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+		partyId: reference('parties'),
+		name: z.string().min(1),
+		role: z.string().min(1),
+		bio: z.string().min(1),
+		sourceUrl: z.url(),
+		photoCredit: z.string().min(1),
+		photoSourceUrl: z.url(),
+		portraitUrl: z.url().optional(),
+		license: z.string().min(1).optional(),
+		licenseUrl: z.url().optional(),
+	}),
+});
+
+export const collections = { parties, topics, pledges, candidates };

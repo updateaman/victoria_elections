@@ -22,6 +22,7 @@ All content lives in `src/data/` and is validated against the schemas in `src/co
 | File | Contents |
 |---|---|
 | `src/data/parties.json` | Array of parties: `id`, `name`, `shortName`, `colour`, `website`, `manifestoUrl`, `lastVerified`, ... |
+| `src/data/candidates.json` | Featured people: `id`, `name`, `partyId`, Victorian role or electorate, short biography, source and photo credit. Store licensed headshots at `public/candidates/<id>.jpg`, or set `portraitUrl` for a hosted portrait. |
 | `src/data/topics.json` | Fixed topic taxonomy shared across the site |
 | `src/data/pledges/<party-id>.json` | Array of pledges for one party |
 
