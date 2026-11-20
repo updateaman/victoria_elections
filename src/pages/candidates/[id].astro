@@ -1,0 +1,45 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { href } from '../../lib/site';
+
+export async function getStaticPaths() {
+	return (await getCollection('candidates')).map((candidate) => ({ params: { id: candidate.id }, props: { candidate } }));
+}
+
+const { candidate } = Astro.props;
+const { name, role, bio, sourceUrl, photoSourceUrl, photoCredit, license, licenseUrl, partyId } = candidate.data;
+const party = await getEntry(partyId);
+if (!party) throw new Error(`Unknown party for ${name}`);
+---
+
+<BaseLayout title={`${name} – ${party.data.shortName} | Victorian Election 2026`} description={bio}>
+	<p><a href={`${href('')}#parties`}>← All parties and candidates</a></p>
+	<article>
+		<h1>{name}</h1>
+		<p class="lead">{role}</p>
+		<div class="profile-body">
+			<figure>
+				<img src={candidate.data.portraitUrl ?? href(`candidates/${candidate.id}.jpg`)} referrerpolicy="no-referrer" alt={`Portrait of ${name}`} />
+				<figcaption class="meta">
+					Photo: {photoCredit} <a href={photoSourceUrl} target="_blank" rel="noopener noreferrer">Original photo ↗</a>
+					{licenseUrl && <> · <a href={licenseUrl} target="_blank" rel="noopener noreferrer">{license} ↗</a></>}
+				</figcaption>
+			</figure>
+			<div>
+				<p><strong>Party:</strong> <a href={href(`parties/${party.id}/`)}>{party.data.name}</a></p>
+				<h2>Background</h2>
+				<p>{bio}</p>
+				<p class="meta"><a href={sourceUrl} target="_blank" rel="noopener noreferrer">Biographical source ↗</a></p>
+			</div>
+		</div>
+	</article>
+</BaseLayout>
+
+<style>
+	.profile-body { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 1.5rem; }
+	figure { margin: 0; width: min(100%, 16rem); }
+	figure img { display: block; width: 100%; height: auto; border-radius: var(--radius); }
+	figcaption { margin-top: .4rem; }
+	.profile-body > div { flex: 1 1 18rem; max-width: 65ch; }
+</style>

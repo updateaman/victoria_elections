@@ -1,6 +1,6 @@
 // Cross-reference and quality checks for src/data that the content schemas don't cover.
 // Usage: node scripts/validate-data.mjs
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 
 const dataDir = path.resolve('src/data');
@@ -15,6 +15,19 @@ const errors = [];
 const warnings = [];
 const seen = new Map();
 const counts = {};
+
+const candidateIds = new Set();
+const profiledParties = new Set();
+for (const candidate of read('candidates.json')) {
+	if (candidateIds.has(candidate.id)) errors.push(`Duplicate candidate id: ${candidate.id}`);
+	candidateIds.add(candidate.id);
+	profiledParties.add(candidate.partyId);
+	if (!partyIds.has(candidate.partyId)) errors.push(`${candidate.id}: unknown party ${candidate.partyId}`);
+	if (!candidate.portraitUrl && !existsSync(path.join('public/candidates', `${candidate.id}.jpg`))) errors.push(`${candidate.id}: missing headshot`);
+}
+for (const partyId of partyIds) {
+	if (!profiledParties.has(partyId)) warnings.push(`${partyId}: no featured candidate`);
+}
 
 for (const file of readdirSync(path.join(dataDir, 'pledges')).filter((f) => f.endsWith('.json'))) {
 	const pledges = read(path.join('pledges', file));
