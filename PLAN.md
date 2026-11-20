@@ -78,7 +78,7 @@ Note: the PBO tracker is an interactive dashboard that could not be scraped; PBO
 
 ## Phase 3 – Launch (Days 5–6)
 
-- [ ] 3.1 Check authorisation requirements with VEC; add authorisation statement to footer
+- [x] 3.1 Checked VEC guidance; generic authorisation statement ("Authorised by the site owner, Melbourne VIC") in footer and About page. Note: VEC recommends a full name + street address; a PO box is not sufficient.
 - [x] 3.2 Automated link check across all source URLs (139 URLs, one redirect fixed; plus 1,369 internal links)
 - [x] 3.3 Final neutrality review of all summaries (automated spin-word scan + manual sample review)
 - [ ] 3.4 Deploy updated site to production; smoke-test live site on desktop + mobile
