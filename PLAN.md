@@ -81,7 +81,7 @@ Note: the PBO tracker is an interactive dashboard that could not be scraped; PBO
 - [x] 3.1 Checked VEC guidance; generic authorisation statement ("Authorised by the site owner, Melbourne VIC") in footer and About page. Note: VEC recommends a full name + street address; a PO box is not sufficient.
 - [x] 3.2 Automated link check across all source URLs (139 URLs, one redirect fixed; plus 1,369 internal links)
 - [x] 3.3 Final neutrality review of all summaries (automated spin-word scan + manual sample review)
-- [ ] 3.4 Deploy updated site to production; smoke-test live site on desktop + mobile
+- [x] 3.4 Deployed to production via GitHub Actions (run 44734601310, success); smoke-tested 16 live URLs (all 200), 8 party cards, 285 search-index entries, authorisation present
 - [x] 3.5 Add "Report an error" issue template (`.github/ISSUE_TEMPLATE/correction.yml`)
 - [ ] 3.6 Pre-election refresh: re-check parties for new announcements (until 27 Nov)
 
