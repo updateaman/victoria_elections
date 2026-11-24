@@ -49,6 +49,7 @@ main { padding: 2rem 0 3rem; min-height: 60vh; }
 .site-footer .wrap { padding: 1.5rem 0; }
 
 .lead { font-size: 1.12rem; color: var(--muted); max-width: 70ch; }
+.hero-banner { display: block; width: 100%; height: auto; margin: 1.4rem 0; border: 1px solid var(--line); border-radius: var(--radius); }
 .notice { background: #fff8e1; border: 1px solid #f0d98c; border-radius: var(--radius); padding: .8rem 1rem; margin: 1rem 0; }
 .meta { color: var(--muted); font-size: .9rem; }
 
