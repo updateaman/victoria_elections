@@ -45,6 +45,10 @@ Example pledge:
 
 Rules: every pledge needs a source URL and access date; IDs must be unique and stable; `party` and `topic` must match existing IDs; dates use `YYYY-MM-DD`.
 
+## Priorities quiz
+
+`/quiz/` asks readers which topics matter most and compares their answers with the topic distribution of each party's recorded pledges. It runs entirely in the browser: `/quiz-data.json` is generated from the same pledge data at build time, and results are an alignment measure, not a recommendation or voting advice.
+
 ## Deployment
 
 Set the final origin before building, then upload the generated `dist/` folder to any static host (for example Netlify):
