@@ -23,12 +23,6 @@ const totalPledges = pledges.length;
 
 	<img class="hero-banner" src={href('og-image.jpg')} width="1200" height="630" alt="Four party leaders beside the title Victorian Election 2026: party pledges compared" />
 
-	<div class="stats">
-		<div><div class="stat">{parties.length}</div> parties</div>
-		<div><div class="stat">{totalPledges}</div> pledges</div>
-		<div><div class="stat">{topics.length}</div> topics</div>
-	</div>
-
 	<section class="quiz-feature" aria-labelledby="quiz-feature-title">
 		<div>
 			<h2 id="quiz-feature-title">Not sure which party matches your priorities?</h2>
@@ -36,6 +30,12 @@ const totalPledges = pledges.length;
 		</div>
 		<a class="button" href={href('quiz/')}>Take the priorities quiz →</a>
 	</section>
+
+	<div class="stats">
+		<div><div class="stat">{parties.length}</div> parties</div>
+		<div><div class="stat">{totalPledges}</div> pledges</div>
+		<div><div class="stat">{topics.length}</div> topics</div>
+	</div>
 
 	<h2 id="parties">Parties, candidates and policy documents</h2>
 	<p>Meet the state leaders and featured candidates for each party. Select a name to read their biography, or <a href="https://www.vec.vic.gov.au/voting/2026-state-election/find-candidates" target="_blank" rel="noopener noreferrer">find all candidates in your electorate at the Victorian Electoral Commission ↗</a>.</p>
