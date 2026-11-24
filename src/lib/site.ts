@@ -5,8 +5,7 @@ export const site = {
 	electionDate: '2026-11-28',
 	dataLastVerified: '2026-11-20',
 	authorisation: 'Authorised by the site owner, Melbourne VIC.',
-	errorReportUrl: 'https://github.com/your-username/victoria_elections/issues/new',
-	sourceRepoUrl: 'https://github.com/your-username/victoria_elections',
+	contactEmail: 'contents_revocable756@simplelogin.com',
 };
 
 // Astro's BASE_URL may or may not include a trailing slash depending on `trailingSlash`.

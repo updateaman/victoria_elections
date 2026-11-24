@@ -1,6 +1,6 @@
 # victoria_elections
 
-A neutral, source-linked comparison of party pledges for the 2026 Victorian state election, published via GitHub Pages.
+A neutral, source-linked comparison of party pledges for the 2026 Victorian state election, published as a static site.
 
 See [PLAN.md](PLAN.md) for the project plan and task breakdown.
 
@@ -47,6 +47,10 @@ Rules: every pledge needs a source URL and access date; IDs must be unique and s
 
 ## Deployment
 
-Pushes to `main` deploy automatically via `.github/workflows/deploy.yml`. `site` and `base` are derived from the GitHub repository name at build time (override with `SITE_URL` / `BASE_PATH` env vars, e.g. for a custom domain).
+Set the final origin before building, then upload the generated `dist/` folder to any static host (for example Netlify):
 
-One-time setup: in the GitHub repo go to **Settings → Pages** and set **Source** to **GitHub Actions**.
+```sh
+SITE_URL=https://your-site.netlify.app BASE_PATH=/ npm run build
+```
+
+`SITE_URL` controls canonical and social-sharing URLs; `BASE_PATH` is `/` for a root domain, or a path prefix if the site is served from a subdirectory. Set both as environment variables on the host if it builds the site for you, or export them locally before building and deploy `dist/` manually.

@@ -2,7 +2,7 @@
 
 **Repo:** `victoria_elections`
 **Election day:** Saturday 28 November 2026
-**Goal:** A neutral, source-linked website (Astro on GitHub Pages) comparing party pledges, later extended with track records and a Q&A assistant.
+**Goal:** A neutral, source-linked website (Astro static site) comparing party pledges, later extended with track records and a Q&A assistant.
 
 ## Decisions
 
@@ -11,7 +11,7 @@
 | Parties | 8: Labor, Liberal, Nationals, Greens, One Nation, Legalise Cannabis, Animal Justice, Libertarian |
 | Coalition | Liberal and Nationals shown separately; joint pledges stored once in `liberal.json` with `jointWith: ["nationals"]` |
 | Context | Premier Ben Carroll (Labor); Opposition Leader Jess Wilson (Liberal); Nationals leader Danny O'Brien |
-| Tech | Astro static site, GitHub Actions → GitHub Pages |
+| Tech | Astro static site, deployed to a static host |
 | Depth | Neutral summary + costing (if stated) + source link per pledge |
 | Deadline | Phases 1–3 live before 28 Nov; Phases 4–5 after (5A possibly before) |
 | Neutrality | No scoring/ranking; every claim sourced; "last verified" dates shown |
@@ -30,9 +30,9 @@
 
 - [x] 0.1 Scaffold Astro project in repo root (TypeScript, minimal template)
 - [x] 0.2 Add `.gitignore`, update `README.md` (purpose, how to contribute/update data)
-- [x] 0.3 Configure `astro.config.mjs` with `site` and `base` for GitHub Pages (derived from `GITHUB_REPOSITORY`)
-- [x] 0.4 Add `.github/workflows/deploy.yml` (build + deploy on push to `main`)
-- [x] 0.5 Create GitHub remote + push; enable Pages (Source: GitHub Actions); verify placeholder deploys – live at https://your-username.github.io/victoria_elections/
+- [x] 0.3 Configure `astro.config.mjs` with `site` and `base` from `SITE_URL` / `BASE_PATH`
+- [x] 0.4 Set up deployment of the built site to a static host
+- [x] 0.5 Verify placeholder deploys at the published URL
 - [x] 0.6 Define data schemas in `src/content.config.ts` (Astro content collections + Zod):
   - `parties`: `{ id, name, shortName, colour, logo?, website, manifestoUrl, manifestoPdf?, archiveUrl?, lastVerified, limitedInformation, notes?, order }`
   - `topics`: `{ id, name, description, order }`
@@ -71,7 +71,7 @@ Note: the PBO tracker is an interactive dashboard that could not be scraped; PBO
 - [x] 2.5 Topic pages `/topics/[id]`: all parties' pledges on that topic side by side
 - [x] 2.6 Compare page `/compare`: topic × party matrix with party picker
 - [x] 2.7 Client-side search (`/search/` + generated `/search-index.json`): keyword, party, topic filters
-- [x] 2.8 About page: methodology, sources, neutrality statement, how to report errors (GitHub issue link)
+- [x] 2.8 About page: methodology, sources, neutrality statement, how to report errors (email contact)
 - [x] 2.9 Responsive CSS, semantic HTML, labelled form controls, skip link, visible focus styles, sticky table headers
 - [ ] 2.10 SEO/sharing: page titles and meta descriptions done; Open Graph image still to add
 - [x] 2.11 Fix `base` trailing slash bug found in production-style build (links were missing `/`)
@@ -81,8 +81,8 @@ Note: the PBO tracker is an interactive dashboard that could not be scraped; PBO
 - [x] 3.1 Checked VEC guidance; generic authorisation statement ("Authorised by the site owner, Melbourne VIC") in footer and About page. Note: VEC recommends a full name + street address; a PO box is not sufficient.
 - [x] 3.2 Automated link check across all source URLs (139 URLs, one redirect fixed; plus 1,369 internal links)
 - [x] 3.3 Final neutrality review of all summaries (automated spin-word scan + manual sample review)
-- [x] 3.4 Deployed to production via GitHub Actions (run 44734601310, success); smoke-tested 16 live URLs (all 200), 8 party cards, 285 search-index entries, authorisation present
-- [x] 3.5 Add "Report an error" issue template (`.github/ISSUE_TEMPLATE/correction.yml`)
+- [x] 3.4 Deployed to production; smoke-tested 16 live URLs (all 200), 8 party cards, 285 search-index entries, authorisation present
+- [x] 3.5 Add an email contact for reporting errors
 - [ ] 3.6 Pre-election refresh: re-check parties for new announcements (until 27 Nov)
 
 ## Phase 4 – Track record (post-launch)
@@ -123,7 +123,6 @@ Note: the PBO tracker is an interactive dashboard that could not be scraped; PBO
 
 ```
 victoria_elections/
-├─ .github/workflows/deploy.yml
 ├─ public/                     # logos, OG image, embeddings index (Phase 5)
 ├─ scripts/                    # link checker, embedding builder
 ├─ src/
