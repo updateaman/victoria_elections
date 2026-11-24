@@ -57,4 +57,4 @@ Set the final origin before building, then upload the generated `dist/` folder t
 SITE_URL=https://your-site.netlify.app BASE_PATH=/ npm run build
 ```
 
-`SITE_URL` controls canonical, social-sharing, sitemap and robots URLs; `BASE_PATH` is `/` for a root domain, or a path prefix if the site is served from a subdirectory. Set both as environment variables on the host if it builds the site for you, or export them locally before building and deploy `dist/` manually. `/sitemap.xml` and `/robots.txt` are generated at build time from the site data and the configured origin.
+`SITE_URL` controls canonical, social-sharing, sitemap and robots URLs; if omitted it defaults to `https://vic-election-2026.netlify.app`, so generated files never contain localhost links. `BASE_PATH` is `/` for a root domain, or a path prefix if the site is served from a subdirectory. Set both as environment variables on the host if it builds the site for you, or export them locally before building and deploy `dist/` manually. `/sitemap.xml` and `/robots.txt` are generated at build time from the site data and the configured origin.
