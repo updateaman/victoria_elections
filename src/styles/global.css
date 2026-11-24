@@ -41,7 +41,7 @@ nav ul { display: flex; flex-wrap: wrap; gap: .25rem 1rem; list-style: none; mar
 nav a { display: block; padding: .35rem 0; font-weight: 550; }
 .has-submenu { position: relative; }
 .nav-row { display: flex; align-items: center; gap: .15rem; }
-.submenu-toggle { background: none; border: 0; color: var(--ink); font: inherit; font-size: .8rem; line-height: 1; cursor: pointer; padding: .2rem .3rem; }
+.submenu-toggle { background: none; border: 0; color: var(--ink); font: inherit; font-size: 1.05rem; line-height: 1; cursor: pointer; padding: .2rem .35rem; }
 .has-submenu.open > .nav-row .submenu-toggle { transform: rotate(180deg); }
 nav .submenu { display: none; position: absolute; top: 100%; left: 0; z-index: 20; min-width: 210px; flex-direction: column; gap: 0; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 8px 24px rgba(0, 0, 0, .12); padding: .4rem; }
 .has-submenu.open > .submenu { display: flex; }
