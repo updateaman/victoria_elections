@@ -68,11 +68,14 @@ const nav: NavItem[] = [
 					<ul>
 						{nav.map((item) => (
 							<li class={item.children ? 'has-submenu' : undefined}>
-								<a href={item.href} aria-current={item.match && !item.children ? 'page' : undefined}>
-									{item.label}{item.children && <span aria-hidden="true"> ▾</span>}
-								</a>
+								<div class="nav-row">
+									<a href={item.href} aria-current={item.match && !item.children ? 'page' : undefined}>{item.label}</a>
+									{item.children && (
+										<button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="compare-submenu" aria-label="Show Compare topics">▾</button>
+									)}
+								</div>
 								{item.children && (
-									<ul class="submenu">
+									<ul class="submenu" id="compare-submenu">
 										{item.children.map((child) => (
 											<li><a href={child.href} aria-current={child.match ? 'page' : undefined}>{child.label}</a></li>
 										))}
@@ -97,5 +100,33 @@ const nav: NavItem[] = [
 				<p>{site.authorisation}</p>
 			</div>
 		</footer>
+		<script>
+			const toggles = document.querySelectorAll('.submenu-toggle');
+
+			function closeMenus() {
+				toggles.forEach((btn) => {
+					btn.closest('.has-submenu')?.classList.remove('open');
+					btn.setAttribute('aria-expanded', 'false');
+				});
+			}
+
+			toggles.forEach((btn) => {
+				btn.addEventListener('click', () => {
+					const isOpen = btn.closest('.has-submenu').classList.toggle('open');
+					btn.setAttribute('aria-expanded', String(isOpen));
+				});
+			});
+
+			document.addEventListener('click', (e) => {
+				if (!(e.target instanceof Element) || !e.target.closest('.has-submenu')) closeMenus();
+			});
+
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape') {
+					closeMenus();
+					toggles[0]?.focus();
+				}
+			});
+		</script>
 	</body>
 </html>
