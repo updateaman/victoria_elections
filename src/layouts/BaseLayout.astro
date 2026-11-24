@@ -16,6 +16,7 @@ interface NavItem {
 }
 
 const { title = site.title, description = site.description } = Astro.props;
+const ogImage = new URL(href('og-image.jpg'), Astro.site ?? 'http://localhost:4321').href;
 const { topics } = await loadData();
 const path = Astro.url.pathname.replace(base.replace(/\/$/, ''), '') || '/';
 const nav: NavItem[] = [
@@ -52,6 +53,11 @@ const nav: NavItem[] = [
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Four party leaders beside the title Victorian Election 2026: party pledges compared" />
+		<meta name="twitter:card" content="summary_large_image" />
 	</head>
 	<body>
 		<a class="skip-link" href="#main">Skip to content</a>
