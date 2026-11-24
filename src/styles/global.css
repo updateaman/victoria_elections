@@ -39,6 +39,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .brand span { color: var(--accent); }
 nav ul { display: flex; flex-wrap: wrap; gap: .25rem 1rem; list-style: none; margin: 0; padding: 0; }
 nav a { display: block; padding: .35rem 0; font-weight: 550; }
+.has-submenu { position: relative; }
+nav .submenu { display: none; position: absolute; top: 100%; left: 0; z-index: 20; min-width: 210px; flex-direction: column; gap: 0; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 8px 24px rgba(0, 0, 0, .12); padding: .4rem; }
+.has-submenu:hover > .submenu, .has-submenu:focus-within > .submenu { display: flex; }
+nav .submenu a { padding: .35rem .5rem; border-radius: 6px; font-weight: 500; }
+nav .submenu a:hover, nav .submenu a[aria-current='page'] { background: #edf2f6; color: var(--accent-dark); }
 main { padding: 2rem 0 3rem; min-height: 60vh; }
 .site-footer { background: var(--card); border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
 .site-footer .wrap { padding: 1.5rem 0; }
@@ -119,4 +124,5 @@ button.secondary { background: var(--card); color: var(--ink); border: 1px solid
 	.wrap { width: min(1100px, 100% - 1.2rem); }
 	main { padding-top: 1.2rem; }
 	.site-header .wrap { padding: .7rem 0; }
+	nav .submenu { display: flex; position: static; min-width: 0; box-shadow: none; border: 0; padding: 0 0 .3rem .6rem; }
 }

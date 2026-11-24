@@ -29,6 +29,9 @@ const totalPledges = pledges.length;
 
 	<h2 id="parties">Parties, candidates and policy documents</h2>
 	<p>Meet the state leaders and featured candidates for each party. Select a name to read their biography, or <a href="https://www.vec.vic.gov.au/voting/2026-state-election/find-candidates" target="_blank" rel="noopener noreferrer">find all candidates in your electorate at the Victorian Electoral Commission ↗</a>.</p>
+	<p>
+		Unsure which party's priorities line up with yours? <a href={href('quiz/')}>Take the priorities quiz</a> to see which parties' published pledges overlap most with the issues you care about. It is an alignment check, not voting advice.
+	</p>
 	<ul class="grid grid-3" style="list-style:none;padding:0;">
 		{
 			parties.map((party) => {
@@ -61,14 +64,9 @@ const totalPledges = pledges.length;
 		}
 	</ul>
 
-	<h2>Compare by topic</h2>
-	<p>Each topic page puts every party's pledges on that issue next to each other.</p>
-	<ul class="topic-list">
-		{topics.map((topic) => (
-			<li><a href={href(`topics/${topic.id}/`)}>{topic.data.name}</a></li>
-		))}
-	</ul>
-	<p><a href={href('compare/')}><strong>Open the full comparison table →</strong></a></p>
+	<h2>Compare the parties</h2>
+	<p>See pledges side by side, or choose a topic from the Compare menu above.</p>
+	<p><a href={href('compare/')}><strong>Open the comparison page →</strong></a></p>
 
 	<h2>How to read this site</h2>
 	<p>
